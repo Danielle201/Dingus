@@ -1,0 +1,40 @@
+local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))()
+
+local window = DrRayLibrary:Load("VortexFusionX", "Default")
+
+local Maintab = DrRayLibrary.newTab("Main", "ImageIdHere")
+
+Maintab.newButton("Instant Complete", "", function()
+    local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+-- Function to instantly complete the ProximityPrompt
+local function instantlyCompletePrompt(prompt)
+    if prompt and prompt:IsA("ProximityPrompt") then
+        -- Fire the ProximityPrompt's Triggered event to complete the interaction
+        fireproximityprompt(prompt)
+    end
+end
+
+-- Monitor for when ProximityPrompt is interacted with
+local function monitorPrompts(object)
+    if object:IsA("ProximityPrompt") then
+        -- Detect when the player clicks the proximity prompt
+        object.Triggered:Connect(function()
+            instantlyCompletePrompt(object)
+        end)
+    end
+end
+
+-- Listen for any new objects added to the workspace
+workspace.DescendantAdded:Connect(function(descendant)
+    monitorPrompts(descendant)
+end)
+
+-- Also check existing objects in the workspace
+for _, descendant in ipairs(workspace:GetDescendants()) do
+    monitorPrompts(descendant)
+end
+end)
+
+local tab = DrRayLibrary.newTab("Visuals", "ImageIdHere")
