@@ -1,10 +1,10 @@
-local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Eeepic", "Synapse")
 
-local window = DrRayLibrary:Load("VortexFusionX", "Default")
+local MainTab = Window:NewTab("Main")
+local Section = MainTab:NewSection("Main")
 
-local Maintab = DrRayLibrary.newTab("Main", "ImageIdHere")
-
-Maintab.newButton("Instant Complete", "", function()
+Section:NewButton("ButtonText", "ButtonInfo", function()
     local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
@@ -36,5 +36,3 @@ for _, descendant in ipairs(workspace:GetDescendants()) do
     monitorPrompts(descendant)
 end
 end)
-
-local tab = DrRayLibrary.newTab("Visuals", "ImageIdHere")
